@@ -1,13 +1,15 @@
-### STAGE 1: Download and Update the System ###
-FROM node:22-alpine AS build
-WORKDIR /app
-COPY package*.json .
-RUN npm install
-COPY . ./
-RUN npm run build 
-RUN ls /app
+# Dockerfile contents (located in devops-demo/)
+FROM node:22-alpine as build-stage
 
-### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /app
+
+# Copy the entire vite-project directory into /app
+# This assumes 'vite-project' is a direct child of the directory where Dockerfile resides
+COPY vite-project/package*.json ./ # Copy package files from the subfolder
+RUN npm install                     # This will now look for package.json in /app
+
+COPY vite-project . ./              # Copy the rest of the project files from subfolder
+RUN npm run build
+
+# ... rest of your multi-stage build (if any)
+
