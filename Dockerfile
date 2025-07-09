@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dockerfile contents (located in devops-demo/)
 FROM node:22-alpine as build-stage
 
@@ -12,4 +13,3 @@ COPY v . ./              # Copy the rest of the project files from subfolder
 RUN npm run build
 
 # ... rest of your multi-stage build (if any)
-
