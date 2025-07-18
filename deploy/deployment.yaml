@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: devops-demo # Or whatever your container name is
-        image: silpa13/devops_demo:v20250718184638
+        image: silpa13/devops_demo:v20250718202321
         ports:
         - containerPort: 80
 
